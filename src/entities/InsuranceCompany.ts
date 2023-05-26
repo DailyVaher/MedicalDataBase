@@ -1,8 +1,9 @@
-import { PrimaryGeneratedColumn, Column, Entity, BaseEntity, ManyToOne, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity, BaseEntity, OneToMany } from "typeorm";
 import { Patient } from "./Patient";
 
 @Entity()
 export class InsuranceCompany extends BaseEntity {
+    
     @PrimaryGeneratedColumn()
     id!: number
     

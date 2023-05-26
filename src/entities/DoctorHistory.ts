@@ -1,11 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany, OneToOne, ManyToOne } from "typeorm"
+import { Entity, PrimaryColumn, Column, BaseEntity, ManyToOne } from "typeorm"
 import { Doctor } from "./Doctor"
-import { Hospital } from "./Hospital"
+import { Patient } from "./Patient"
 
 @Entity()
 export class DoctorHistory extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id!: number
+
+  @PrimaryColumn({type: "bigint"})
+  startDate!: number
 
   @Column("int", { unique: true })
   doctorId!: number
@@ -13,19 +14,17 @@ export class DoctorHistory extends BaseEntity {
   @Column("int", { unique: true })
   hospitalId!: number
 
-  @Column("date")
-  startDate!: Date
-
-  @Column("date")
-  endDate!: Date
+  @Column({type: "bigint", nullable: true})
+  endDate!: number | undefined  
 
   @Column("varchar", { length: 200, nullable: true })
   reasonForLeaving!: string 
-   
-  @OneToOne(() => Doctor, doctor => doctor.doctorHistory)
-  doctors!: Doctor
 
-  @OneToMany(() => Hospital, hospital => hospital.doctorHistory)
-  hospitals!: Hospital[]
-    
+  @ManyToOne(() => Doctor, doctor => doctor.doctorHistory)
+  doctor!: Doctor
+
+  @ManyToOne(() => Patient, patient => patient.doctorHistory)
+  patient!: Patient
+
 }
+  

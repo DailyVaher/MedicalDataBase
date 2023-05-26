@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany, OneToOne, ManyToOne } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany} from "typeorm"
 import { Patient } from "./Patient";
 import { Prescription } from "./Prescription";
-import { Hospital } from "./Hospital";
-import { DoctorHistory } from "./DoctorHistory";
 import { Visit } from "./Visit";
+import { DoctorHistory } from "./DoctorHistory";
+
 
 @Entity()
 export class Doctor extends BaseEntity{
@@ -46,12 +46,9 @@ export class Doctor extends BaseEntity{
 
     @OneToMany(() => Prescription, prescription => prescription.doctor)
     prescriptions!: Prescription[]
-
-    @OneToMany(() => Hospital, hospital => hospital.doctors)
-    hospitals!: Hospital[]
   
-    @OneToOne(() => DoctorHistory, doctorHistory => doctorHistory.doctors)
-    doctorHistory!: DoctorHistory
+    @OneToMany(() => DoctorHistory, DoctorHistory => DoctorHistory.doctor)
+    doctorHistory!: DoctorHistory[]
 
     @OneToMany(() => Visit, Visit => Visit.doctor)
     visits!: Visit[]

@@ -135,7 +135,7 @@ try {
     doctor.specialization = specialization ? specialization : doctor.specialization;
     doctor.hospitalId = hospitalId ? hospitalId : doctor.hospitalId;
     doctor.hospitalAffilitation = hospitalAffilitation ? hospitalAffilitation : doctor.hospitalAffilitation;
-    doctor.dateOfAffilitation = dateOfAffilitation ? dateOfAffilitation : doctor.dateOfAffilitation;
+    doctor.dateOfAffilitation = dateOfAffilitation ? dateOfAffilitation : doctor.dateOfAffilitation
 
     // save the changes to the database (salvestame muudatused andmebaasi) 
     const result = await doctor.save();

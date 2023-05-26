@@ -13,8 +13,8 @@ export class Visit extends BaseEntity {
     @Column("int", { unique: true })
     doctorId!: number
    
-    @Column("date")
-    dateOfVisit!: Date
+    @Column("{type: 'number', nullable: true}")
+    dateOfVisit!: number
 
     @Column("varchar", { length: 200, nullable: true})
     initialVisit!: boolean

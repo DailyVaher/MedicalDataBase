@@ -3,6 +3,7 @@ import { Doctor } from "./Doctor";
 import { InsuranceCompany } from "./InsuranceCompany";
 import { Prescription } from "./Prescription";
 import { Visit } from "./Visit";
+import { DoctorHistory } from "./DoctorHistory";
 
 
 
@@ -48,11 +49,14 @@ export class Patient extends BaseEntity {
     doctorId!: number
 
 
-  @ManyToOne(() => Doctor, doctor => doctor.patients, {eager:true})
+  @ManyToOne(() => Doctor, doctor => doctor.patients, {eager: true})
   doctor!: Doctor
 
   @ManyToOne(() => InsuranceCompany, insuranceCompany => insuranceCompany.patients)
   insuranceCompany!: InsuranceCompany
+
+  @OneToMany(() => DoctorHistory, doctorHistory => doctorHistory.patient)
+  doctorHistory!: DoctorHistory[];
 
   @OneToMany(() => Prescription, prescription => prescription.patient)
   prescriptions!: Prescription[];

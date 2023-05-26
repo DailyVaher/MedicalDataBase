@@ -1,9 +1,9 @@
-import { PrimaryGeneratedColumn, Column, Entity, BaseEntity, ManyToOne, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToMany } from "typeorm";
-import { Doctor } from "./Doctor";
+import { PrimaryGeneratedColumn, Column, Entity, BaseEntity, OneToMany} from "typeorm";
 import { DoctorHistory } from "./DoctorHistory";
 
 @Entity()
 export class Hospital extends BaseEntity {
+
     @PrimaryGeneratedColumn()
     id!: number
     
@@ -17,15 +17,9 @@ export class Hospital extends BaseEntity {
     phone!: string
 
     @Column("int", { unique: true })
-    doctorId!: number
-
-    @Column("int", { unique: true })
     doctorHistoryId!: number
 
-    @OneToMany(() => Doctor, doctor => doctor.hospitals)
-    doctors!: Doctor[]
-
-    @OneToMany(() => DoctorHistory, doctorHistory => doctorHistory.hospitals)
+    @OneToMany(() => DoctorHistory, doctorHistory => doctorHistory.hospitalId)
     doctorHistory!: DoctorHistory[]
     
 }

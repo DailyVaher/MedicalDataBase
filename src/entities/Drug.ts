@@ -3,6 +3,7 @@ import { Prescription } from "./Prescription";
 
 @Entity()
 export class Drug extends BaseEntity {
+
     @PrimaryGeneratedColumn()
     id!: number
     
@@ -19,6 +20,6 @@ export class Drug extends BaseEntity {
     prescriptionId!: number
 
     @OneToMany(() => Prescription, prescription => prescription.drug)
-    prescription!: Prescription[];
+    prescription!: Prescription[];    
     
 }

@@ -1,10 +1,11 @@
-import { PrimaryGeneratedColumn, Column, Entity, BaseEntity, ManyToOne, OneToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { PrimaryGeneratedColumn, Column, Entity, BaseEntity, ManyToOne} from "typeorm";
 import { Drug } from "./Drug";
 import { Patient } from "./Patient";
 import { Doctor } from "./Doctor";
 
 @Entity()
 export class Prescription extends BaseEntity {
+
     @PrimaryGeneratedColumn()
     id!: number
     
@@ -12,19 +13,10 @@ export class Prescription extends BaseEntity {
     drugId!: number
 
     @Column("varchar", { length: 200 })
-    drugName!: string
-
-    @Column("varchar", { length: 200 })
     doctorId!: number
 
     @Column("varchar", { length: 200 })
-    doctorName!: string
-
-    @Column("varchar", { length: 200 })
     patientId!: string
-
-    @Column("varchar", { length: 200 })
-    patientName!: string
 
     @Column("date")
     datePrescribed!: Date
@@ -38,19 +30,19 @@ export class Prescription extends BaseEntity {
     @Column()
     refillable!: boolean
 
-    @Column("varchar", { length: 200})
-    numOfRefills!: string
+    @Column("int", {nullable:true}) 
+    numOfRefills!: number  
 
-    @Column("varchar", { length: 200 })
+    @Column("varchar", { length: 200, nullable: true }) 
     comments!: string
 
-    @ManyToOne(() => Drug, drug => drug.prescription)
+    @ManyToOne(() => Drug, drug => drug.prescription, { eager: true })
     drug!: Drug
 
-    @ManyToOne(() => Patient, patient => patient.prescription)
+    @ManyToOne(() => Patient, patient => patient.prescription, { eager: true })
     patient!: Patient
 
-    @ManyToOne(() => Doctor, doctor => doctor.prescription)
+    @ManyToOne(() => Doctor, doctor => doctor.prescription, { eager: true })
     doctor!: Doctor
     
 }

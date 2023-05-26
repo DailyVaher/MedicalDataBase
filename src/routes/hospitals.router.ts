@@ -11,6 +11,7 @@ interface CreateHospitalParams {
     hospitalName: string;
     address: string;
     phone: string;
+    doctorHistoryId: number;
 }
 
 interface UpdateHospitalParams {
