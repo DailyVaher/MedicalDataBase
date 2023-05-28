@@ -3,7 +3,6 @@ import defaultDataSource from '../datasource';
 import { InsuranceCompany } from '../entities/InsuranceCompany';
 import { Patient } from '../entities/Patient';
 
-
 const router = express.Router();
 
 interface CreateInsuranceCompanyParams {

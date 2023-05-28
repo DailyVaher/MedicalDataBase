@@ -14,6 +14,9 @@ export class DoctorHistory extends BaseEntity {
   @Column("int", { unique: true })
   hospitalId!: number
 
+  @Column ("int", {unique: true})
+  patientId!: number
+
   @Column({type: "bigint", nullable: true})
   endDate!: number | undefined  
 

@@ -2,9 +2,6 @@ import express from 'express';
 import defaultDataSource from '../datasource';
 import { Hospital } from '../entities/Hospital';
 
-
-
-
 const router = express.Router();
 
 interface CreateHospitalParams {
@@ -46,7 +43,7 @@ try {
     if (!hospitalName || !address || !phone) {
     return res
         .status(400)
-        .json({ error: "Complete doctors data", req: {
+        .json({ error: "Complete hospital data", req: {
         hospitalName: hospitalName,
         address: address,
         phone: phone,

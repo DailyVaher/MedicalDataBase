@@ -85,16 +85,15 @@ try {
 
     // create new prescription with given parameters
     const prescription = new Prescription();
-    prescription.drugId = drugId ?? "";
-    prescription.doctorId = doctorId ?? "";
-    prescription.patientId = patientId ?? "";
-    prescription.datePrescribed = datePrescribed ?? "";
-    prescription.dosage = dosage.trim() ?? "";
-    prescription.duration = duration.trim() ?? "";
-    prescription.refillable = refillable ?? "";
-    prescription.numOfRefills = numOfRefills ?? "";
-    prescription.comments = comments.trim() ?? "";
-
+    prescription.drugId = drugId;
+    prescription.doctorId = doctorId;
+    prescription.patientId = String(patientId);
+    prescription.datePrescribed = datePrescribed;
+    prescription.dosage = dosage;
+    prescription.duration = duration;
+    prescription.refillable = refillable;
+    prescription.numOfRefills = numOfRefills;
+    prescription.comments = comments;
 
     //save prescription to database
     const result = await prescription.save();
@@ -144,7 +143,7 @@ try {
     // update prescription with given parameters
     prescription.drugId = drugId ?? prescription.drugId;
     prescription.doctorId = doctorId ?? prescription.doctorId;
-    prescription.patientId = patientId ?? prescription.patientId;
+    prescription.patientId = patientId ? String(patientId) : prescription.patientId;
     prescription.datePrescribed = datePrescribed ? datePrescribed : prescription.datePrescribed;
     prescription.dosage = dosage ? dosage : prescription.dosage;
     prescription.duration = duration ? duration : prescription.duration;
